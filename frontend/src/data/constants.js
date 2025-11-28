@@ -34,6 +34,14 @@ export const EDITORIAL_BOARD = [
     specialization: "III B.Sc Chemistry",
     email: "dharmaseelan975@gmail.com, 23uch219@sjctni.edu",
     image: "/Students/Dharma.jpg"
+  },
+  {
+    name: "Sharukhaan",
+    position: "Student Editor",
+    department: "Chemistry Department",
+    specialization: "II M.Sc Chemistry",
+    email: "musirisharukhaan@gmail.com",
+    image: "/Students/Sharuk.jpg"
   }
 ];
 
