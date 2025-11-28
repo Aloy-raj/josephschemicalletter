@@ -10,7 +10,15 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // 3. Middleware setup
-app.use(cors()); // Enable CORS for all routes to allow your React app to connect
+app.use(cors({
+  orgin: [
+
+ "https://josephschemicalletter-unda.vercel.app/", //your frontend
+    "https://localhost:3000"
+   ],
+   methods: "GET,POST",
+   credentials: true
+})); // Enable CORS for all routes to allow your React app to connect
 app.use(express.json()); // Enable JSON body parsing for incoming requests
 
 // 4. Connect to MongoDB Atlas
