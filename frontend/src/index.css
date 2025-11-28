@@ -1,0 +1,36 @@
+/* Remove these lines temporarily */
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.text-stroke {
+  font-family: 'Playfair Display', serif;  /* premium look font */
+  font-size: 5rem;                       /* adjust as needed */
+  font-weight: 700;
+  color: white;                            /* inner text color */
+  -webkit-text-stroke: 3px #2c3e50;        /* dark elegant border */
+  text-stroke: 3px #2c3e50;                /* broader browser support */
+}
+
+.text-stroke.gold {
+  -webkit-text-stroke: 2px #FFD700;        /* gold border */
+  text-stroke: 2px #FFD700;
+}
+
+.text-stroke.glow {
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.6),
+               0 0 20px rgba(255, 215, 0, 0.4);
+}
