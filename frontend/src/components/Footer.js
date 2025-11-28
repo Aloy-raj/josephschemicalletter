@@ -108,7 +108,7 @@ const Footer = ({ setCurrentPage }) => {
          <div className="group mb-6">
            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
              Stay Updated
-            </h3>
+           </h3>
            <div className="w-12 h-1 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full group-hover:w-16 transition-all duration-300"></div>
          </div>
 
@@ -116,24 +116,86 @@ const Footer = ({ setCurrentPage }) => {
            Subscribe to receive updates about new issues and announcements.
          </p>
 
-         <form 
-           onSubmit={(e) => e.preventDefault()} 
-           className="flex flex-col space-y-3"
-          >
-           <input 
-             type="email"
-             required
-             placeholder="Your email address"
-             className="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-500 border border-gray-700 focus:ring-2 focus:ring-yellow-500 outline-none"
-           />
+         {/* React Hooks */}
+         {(() => {
+           const [email, setEmail] = React.useState("");
+           const [status, setStatus] = React.useState("idle"); // idle, loading, success, error
+           const [message, setMessage] = React.useState("");
 
-           <button 
-             className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-semibold rounded-lg transition-transform transform hover:scale-105"
-           >
-             Subscribe
-           </button>
-        </form>
-        </div>
+           const handleNewsletterSubmit = async (e) => {
+             e.preventDefault();
+             if (!email) return;
+
+             setStatus("loading");
+             setMessage("Subscribing...");
+
+           try {
+             const response = await fetch("https://josephschemicalletter-1.onrender.com/api/subscribe", {
+               method: "POST",
+               headers: { "Content-Type": "application/json" },
+               body: JSON.stringify({ name: "Newsletter User", email }),
+            });
+
+            const data = await response.json();
+ 
+            if (response.ok) {
+              setStatus("success");
+              setMessage("You are subscribed!");
+              setEmail("");
+            } else {
+            if (data.message && data.message.toLowerCase().includes("already subscribed")) {
+              setStatus("success");
+              setMessage("You are already subscribed!");
+            } else {
+              setStatus("error");
+              setMessage(data.message || "Something went wrong. Please try again.");
+            }
+          }
+         } catch (err) {
+           console.error("Error:", err);
+           setStatus("error");
+           setMessage("Network error. Try again.");
+         }
+         };
+
+         return (
+           <>
+             <form onSubmit={handleNewsletterSubmit} className="flex flex-col space-y-3">
+               <input
+                 type="email"
+                 required
+                 placeholder="Your email address"
+                 value={email}
+                 onChange={(e) => setEmail(e.target.value)}
+                 className="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-500 border border-gray-700 focus:ring-2 focus:ring-yellow-500 outline-none"
+               />
+
+               <button
+                 type="submit"
+                 className={`px-4 py-2 text-gray-900 font-semibold rounded-lg transition-transform transform hover:scale-105 ${
+                   status === "loading"
+                     ? "bg-gray-500 cursor-not-allowed"
+                     : "bg-yellow-500 hover:bg-yellow-600"
+                  }`}
+                  disabled={status === "loading"}
+                 >
+                   {status === "loading" ? "Submitting..." : "Subscribe"}
+                </button>
+             </form>
+ 
+             {message && (
+               <p
+                 className={`mt-3 text-sm ${
+                 status === "success" ? "text-green-400" : "text-red-400"
+                 }`}
+                >
+                 {message}
+               </p>
+              )}
+            </>
+           );
+         })()}
+       </div>
 
         {/* Enhanced Copyright Section */}
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400 animate-fade-in-up delay-600">
