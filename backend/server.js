@@ -1,4 +1,5 @@
 // server.js
+require('dotenv').config(); // <- ADD THIS AT THE VERY TOP
 
 // 1. Import required packages
 const express = require('express');
@@ -19,7 +20,8 @@ app.use(express.json()); // Enable JSON body parsing for incoming requests
 
 // 4. Connect to MongoDB Atlas
 // IMPORTANT: The '@' in the password has been URL-encoded to '%40' to prevent connection errors.
-const uri = "mongodb+srv://josephschemicalletter:Cp2fZfBDnWnBJ2c7@database.cj7ntxp.mongodb.net/?retryWrites=true&w=majority&appName=Database";
+// const uri = "mongodb+srv://...";
+const uri = process.env.MONGODB_URI;
 
 mongoose.connect(uri)
   .then(() => console.log("MongoDB Atlas connection successful."))
