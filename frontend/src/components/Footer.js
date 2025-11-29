@@ -2,6 +2,85 @@ import React from 'react';
 import API_BASE_URL from "../config";
 
 const Footer = ({ setCurrentPage }) => {
+  {/* React Hooks */}
+   {(() => {
+      const [email, setEmail] = React.useState("");
+      const [status, setStatus] = React.useState("idle"); // idle, loading, success, error
+      const [message, setMessage] = React.useState("");
+
+      const handleNewsletterSubmit = async (e) => {
+         e.preventDefault();
+         if (!email) return;
+
+         setStatus("loading");
+         setMessage("Subscribing...");
+
+         try {
+           const response = await fetch("${API_BASE_URL}/api/subscribe", {
+             method: "POST",
+             headers: { "Content-Type": "application/json" },
+             body: JSON.stringify({ name: "Newsletter User", email }),
+           });
+
+            const data = await response.json();
+ 
+            if (response.ok) {
+              setStatus("success");
+              setMessage("You are subscribed!");
+              setEmail("");
+            } else {
+            if (data.message && data.message.toLowerCase().includes("already subscribed")) {
+              setStatus("success");
+              setMessage("You are already subscribed!");
+            } else {
+              setStatus("error");
+              setMessage(data.message || "Something went wrong. Please try again.");
+            }
+          }
+         } catch (err) {
+           console.error("Error:", err);
+           setStatus("error");
+           setMessage("Network error. Try again.");
+         }
+         };
+
+         return (
+           <>
+             <form onSubmit={handleNewsletterSubmit} className="flex flex-col space-y-3">
+               <input
+                 type="email"
+                 required
+                 placeholder="Your email address"
+                 value={email}
+                 onChange={(e) => setEmail(e.target.value)}
+                 className="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-500 border border-gray-700 focus:ring-2 focus:ring-yellow-500 outline-none"
+               />
+
+               <button
+                 type="submit"
+                 className={`px-4 py-2 text-gray-900 font-semibold rounded-lg transition-transform transform hover:scale-105 ${
+                   status === "loading"
+                     ? "bg-gray-500 cursor-not-allowed"
+                     : "bg-yellow-500 hover:bg-yellow-600"
+                  }`}
+                  disabled={status === "loading"}
+                 >
+                   {status === "loading" ? "Submitting..." : "Subscribe"}
+                </button>
+             </form>
+ 
+             {message && (
+               <p
+                 className={`mt-3 text-sm ${
+                 status === "success" ? "text-green-400" : "text-red-400"
+                 }`}
+                >
+                 {message}
+               </p>
+              )}
+            </>
+           );
+         })()}
   return (
     <footer className="bg-gray-900 text-white py-12 relative overflow-hidden">
       {/* Floating background elements */}
@@ -117,86 +196,44 @@ const Footer = ({ setCurrentPage }) => {
            Subscribe to receive updates about new issues and announcements.
          </p>
 
-         {/* React Hooks */}
-         {(() => {
-           const [email, setEmail] = React.useState("");
-           const [status, setStatus] = React.useState("idle"); // idle, loading, success, error
-           const [message, setMessage] = React.useState("");
+         {/* ✔ FIXED NEWSLETTER FORM */}
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col space-y-3">
+              <input
+                type="email"
+                required
+                placeholder="Your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-500 border border-gray-700 focus:ring-2 focus:ring-yellow-500 outline-none"
+              />
 
-           const handleNewsletterSubmit = async (e) => {
-             e.preventDefault();
-             if (!email) return;
+              <button
+                type="submit"
+                className={`px-4 py-2 text-gray-900 font-semibold rounded-lg transition-transform transform hover:scale-105 ${
+                  status === "loading"
+                    ? "bg-gray-500 cursor-not-allowed"
+                    : "bg-yellow-500 hover:bg-yellow-600"
+                }`}
+                disabled={status === "loading"}
+              >
+                {status === "adding you to our community.." ? "Submitting..." : "Subscribe"}
+              </button>
+            </form>
 
-             setStatus("loading");
-             setMessage("Subscribing...");
+            {message && (
+              <p
+                className={`mt-3 text-sm ${
+                  status === "success" ? "text-green-400" : "text-red-400"
+                }`}
+              >
+                {message}
+              </p>
+            )}
+          </div>
+        </div>
 
-           try {
-             const response = await fetch("${API_BASE_URL}/api/subscribe", {
-               method: "POST",
-               headers: { "Content-Type": "application/json" },
-               body: JSON.stringify({ name: "Newsletter User", email }),
-            });
-
-            const data = await response.json();
- 
-            if (response.ok) {
-              setStatus("success");
-              setMessage("You are subscribed!");
-              setEmail("");
-            } else {
-            if (data.message && data.message.toLowerCase().includes("already subscribed")) {
-              setStatus("success");
-              setMessage("You are already subscribed!");
-            } else {
-              setStatus("error");
-              setMessage(data.message || "Something went wrong. Please try again.");
-            }
-          }
-         } catch (err) {
-           console.error("Error:", err);
-           setStatus("error");
-           setMessage("Network error. Try again.");
-         }
-         };
-
-         return (
-           <>
-             <form onSubmit={handleNewsletterSubmit} className="flex flex-col space-y-3">
-               <input
-                 type="email"
-                 required
-                 placeholder="Your email address"
-                 value={email}
-                 onChange={(e) => setEmail(e.target.value)}
-                 className="px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-500 border border-gray-700 focus:ring-2 focus:ring-yellow-500 outline-none"
-               />
-
-               <button
-                 type="submit"
-                 className={`px-4 py-2 text-gray-900 font-semibold rounded-lg transition-transform transform hover:scale-105 ${
-                   status === "loading"
-                     ? "bg-gray-500 cursor-not-allowed"
-                     : "bg-yellow-500 hover:bg-yellow-600"
-                  }`}
-                  disabled={status === "loading"}
-                 >
-                   {status === "loading" ? "Submitting..." : "Subscribe"}
-                </button>
-             </form>
- 
-             {message && (
-               <p
-                 className={`mt-3 text-sm ${
-                 status === "success" ? "text-green-400" : "text-red-400"
-                 }`}
-                >
-                 {message}
-               </p>
-              )}
-            </>
-           );
-         })()}
-       </div>
+         
+       
 
         {/* Enhanced Copyright Section */}
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400 animate-fade-in-up delay-600">
@@ -206,7 +243,7 @@ const Footer = ({ setCurrentPage }) => {
             </p>
           </div>
         </div>
-      </div>
+      
 
       {/* Custom CSS for animations */}
       <style jsx>{`
