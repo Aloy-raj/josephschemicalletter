@@ -63,6 +63,7 @@ const EditorialPage = () => {
                 <p className="text-yellow-600 font-bold mb-3 text-lg bg-yellow-50 inline-block px-4 py-2 rounded-full">
                   {member.position}
                 </p>
+                <p className="text-gray-600 mb-3 font-medium">{member.designation}</p>
                 <p className="text-gray-600 mb-3 font-medium">{member.department}</p>
                 <p className="text-gray-600 mb-6 text-sm leading-relaxed bg-gray-50 p-3 rounded-2xl">
                   {member.specialization}
