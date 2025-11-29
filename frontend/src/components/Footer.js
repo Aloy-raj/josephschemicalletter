@@ -1,4 +1,5 @@
 import React from 'react';
+import API_BASE_URL from "../config";
 
 const Footer = ({ setCurrentPage }) => {
   return (
@@ -130,7 +131,7 @@ const Footer = ({ setCurrentPage }) => {
              setMessage("Subscribing...");
 
            try {
-             const response = await fetch("https://josephschemicalletter-1.onrender.com/api/subscribe", {
+             const response = await fetch("${API_BASE_URL}/api/subscribe", {
                method: "POST",
                headers: { "Content-Type": "application/json" },
                body: JSON.stringify({ name: "Newsletter User", email }),

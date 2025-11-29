@@ -1,6 +1,7 @@
 // frontend/src/components/SubscriptionModal.js
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
+import API_BASE_URL from "../config";
 
 const SubscriptionModal = ({ isVisible, onClose, onSubscribeSuccess }) => {
   const [name, setName] = useState('');
@@ -26,7 +27,7 @@ const SubscriptionModal = ({ isVisible, onClose, onSubscribeSuccess }) => {
     setMessage('Subscribing...');
 
     try {
-      const response = await fetch('https://josephschemicalletter-1.onrender.com/api/subscribe', {
+      const response = await fetch('${API_BASE_URL}/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email }),

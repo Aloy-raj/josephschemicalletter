@@ -11,13 +11,9 @@ const PORT = process.env.PORT || 5000;
 
 // 3. Middleware setup
 app.use(cors({
-  orgin: [
-
- "https://josephschemicalletter-unda.vercel.app/", //your frontend
-    "https://localhost:3000"
-   ],
-   methods: "GET,POST",
-   credentials: true
+  orgin: ["https://localhost:3000", "https://josephschemicalletter-unda.vercel.app/"],
+  methods: ["POST", "GET"],
+  credentials: true
 })); // Enable CORS for all routes to allow your React app to connect
 app.use(express.json()); // Enable JSON body parsing for incoming requests
 
@@ -70,6 +66,10 @@ app.post('/api/subscribe', async (req, res) => {
     console.error('Error saving subscriber:', error);
     res.status(500).json({ message: 'Server error. Please try again later.' });
   }
+});
+
+app.get("/", (req, res) => {
+  res.send("Backend running");
 });
 
 // 7. Start the server
