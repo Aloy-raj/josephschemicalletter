@@ -4,6 +4,7 @@ export const EDITORIAL_BOARD = [
   {
     name: "Dr. A. ARUN VIVEKE",
     position: "Editor-in-Chief",
+    designation: "Assistant Professor of Chemistry",
     department: "Department of chemistry",
     specialization: "Organic Chemistry",
     email: "arunviveke@gmail.com, arunviveke_ch1@mail.sjcni.edu ",
@@ -13,6 +14,7 @@ export const EDITORIAL_BOARD = [
   {
     name: "Dr. S. BRITTO",
     position: "Associate Editor",
+    designation: "Associate Professor of Chemistry",
     department: "Department of Chemisty", 
     specialization: "Organic Chemistry",
     email: "britto_ch1@mail.sjctni.edu",
@@ -22,7 +24,7 @@ export const EDITORIAL_BOARD = [
   {
     name: "Aloysius Yagapparaj",
     position: "Student Editor",
-    department: "Chemistry Department",
+    department: "Department of Chemistry",
     specialization: "III B.Sc Chemistry",
     email: "aloyraj.chem@gmail.com, 23uch255@sjctni.edu",
     image: "/Students/Aloy.jpg"
@@ -30,7 +32,7 @@ export const EDITORIAL_BOARD = [
   {
     name: "Dharmaseelan",
     position: "Student Editor",
-    department: "Chemistry Department",
+    department: "Department of Chemistry",
     specialization: "III B.Sc Chemistry",
     email: "dharmaseelan975@gmail.com, 23uch219@sjctni.edu",
     image: "/Students/Dharma.jpg"
@@ -38,7 +40,7 @@ export const EDITORIAL_BOARD = [
   {
     name: "Sharukhaan",
     position: "Student Editor",
-    department: "Chemistry Department",
+    department: "Department of Chemistry",
     specialization: "II M.Sc Chemistry",
     email: "musirisharukhaan@gmail.com",
     image: "/Students/Sharuk.jpg"
