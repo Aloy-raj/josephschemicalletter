@@ -13,9 +13,10 @@ const PORT = process.env.PORT || 5000;
 // 3. Middleware setup
 app.use(cors({
   orgin: [
-    "https://josephschemicalletter-2hm1.vercel.app/",
-    "https://localhost:3000", 
-    "https://josephschemicalletter-unda.vercel.app/"],
+    "https://josephschemicalletter-2hm1.vercel.app",
+    "http://localhost:3000", 
+    "https://josephschemicalletter-unda.vercel.app"
+  ],
   methods: ["POST", "GET"],
   credentials: true
 })); // Enable CORS for all routes to allow your React app to connect
@@ -25,8 +26,12 @@ app.use(express.json()); // Enable JSON body parsing for incoming requests
 // IMPORTANT: The '@' in the password has been URL-encoded to '%40' to prevent connection errors.
 // const uri = "mongodb+srv://...";
 const uri = process.env.MONGODB_URI;
+if (!mongoURI) {
+  console.error("❌ ERROR: MONGODB_URI not found in environment variables");
+  process.exit(1);
+}
 
-mongoose.connect(uri)
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB Atlas connection successful."))
   .catch(err => console.error("MongoDB connection error:", err));
 
