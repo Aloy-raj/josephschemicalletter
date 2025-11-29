@@ -13,6 +13,7 @@ const PORT = process.env.PORT || 5000;
 // 3. Middleware setup
 app.use(cors({
   orgin: [
+    "https://josephschemicalletter-2hm1.vercel.app/",
     "https://localhost:3000", 
     "https://josephschemicalletter-unda.vercel.app/"],
   methods: ["POST", "GET"],
