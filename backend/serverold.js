@@ -1,4 +1,5 @@
 // server.js
+require('dotenv').config(); // <- ADD THIS AT THE VERY TOP
 
 // 1. Import required packages
 const express = require('express');
@@ -11,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 
 // 3. Middleware setup
 app.use(cors({
-    orgin: [
+  orgin: [
     "https://josephschemicalletter-2hm1.vercel.app",
     "http://localhost:3000", 
     "https://josephschemicalletter-unda.vercel.app"
@@ -23,9 +24,14 @@ app.use(express.json()); // Enable JSON body parsing for incoming requests
 
 // 4. Connect to MongoDB Atlas
 // IMPORTANT: The '@' in the password has been URL-encoded to '%40' to prevent connection errors.
-const uri = "mongodb+srv://josephschemicalletter:Cp2fZfBDnWnBJ2c7@database.cj7ntxp.mongodb.net/?retryWrites=true&w=majority&appName=Database";
+// const uri = "mongodb+srv://...";
+const uri = process.env.MONGODB_URI;
+if (!mongoURI) {
+  console.error("❌ ERROR: MONGODB_URI not found in environment variables");
+  process.exit(1);
+}
 
-mongoose.connect(uri)
+mongoose.connect(mongoURI)
   .then(() => console.log("MongoDB Atlas connection successful."))
   .catch(err => console.error("MongoDB connection error:", err));
 
@@ -78,5 +84,5 @@ app.get("/", (req, res) => {
 
 // 7. Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
