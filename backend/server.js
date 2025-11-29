@@ -12,7 +12,9 @@ const PORT = process.env.PORT || 5000;
 
 // 3. Middleware setup
 app.use(cors({
-  orgin: ["https://localhost:3000", "https://josephschemicalletter-unda.vercel.app/"],
+  orgin: [
+    "https://localhost:3000", 
+    "https://josephschemicalletter-unda.vercel.app/"],
   methods: ["POST", "GET"],
   credentials: true
 })); // Enable CORS for all routes to allow your React app to connect
@@ -76,5 +78,5 @@ app.get("/", (req, res) => {
 
 // 7. Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
