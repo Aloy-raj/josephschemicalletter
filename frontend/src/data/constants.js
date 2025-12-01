@@ -8,7 +8,7 @@ export const EDITORIAL_BOARD = [
     department: "Department of chemistry",
     specialization: "Organic Chemistry",
     email: "arunviveke@gmail.com, arunviveke_ch1@mail.sjcni.edu ",
-    image: "/staff/AV.jpg",
+    image: "/Students/AV.jpg",
     cvLink: "/Dr. Arun Viveke.pdf"
   },
   {
@@ -18,7 +18,7 @@ export const EDITORIAL_BOARD = [
     department: "Department of Chemisty", 
     specialization: "Organic Chemistry",
     email: "britto_ch1@mail.sjctni.edu",
-    image: "/staff/SB.jpg",
+    image: "/Students/SB.jpg",
     cvLink: "/Dr. Britto.pdf"
   },
   {
