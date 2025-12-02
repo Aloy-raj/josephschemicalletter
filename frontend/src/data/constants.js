@@ -8,7 +8,7 @@ export const EDITORIAL_BOARD = [
     department: "Department of chemistry",
     specialization: "Organic Chemistry",
     email: "arunviveke@gmail.com, arunviveke_ch1@mail.sjcni.edu ",
-    image: "/Students/AV.jpg",
+    image: "/EB image/AV.jpg",
     cvLink: "/Dr. Arun Viveke.pdf"
   },
   {
@@ -18,7 +18,7 @@ export const EDITORIAL_BOARD = [
     department: "Department of Chemisty", 
     specialization: "Organic Chemistry",
     email: "britto_ch1@mail.sjctni.edu",
-    image: "/Students/SB.jpg",
+    image: "/EB image/SB.jpg",
     cvLink: "/Dr. Britto.pdf"
   },
   {
@@ -27,7 +27,7 @@ export const EDITORIAL_BOARD = [
     department: "Department of Chemistry",
     specialization: "III B.Sc Chemistry",
     email: "aloyraj.chem@gmail.com, 23uch255@sjctni.edu",
-    image: "/Students/Aloy.jpg"
+    image: "/EB image/Aloy.jpg"
   },
   {
     name: "Dharmaseelan",
@@ -35,7 +35,7 @@ export const EDITORIAL_BOARD = [
     department: "Department of Chemistry",
     specialization: "III B.Sc Chemistry",
     email: "dharmaseelan975@gmail.com, 23uch219@sjctni.edu",
-    image: "/Students/Dharma.jpg"
+    image: "/EB image/Dharma.jpg"
   },
   {
     name: "Sharukhaan",
@@ -43,7 +43,7 @@ export const EDITORIAL_BOARD = [
     department: "Department of Chemistry",
     specialization: "II M.Sc Chemistry",
     email: "musirisharukhaan@gmail.com",
-    image: "/Students/Sharuk.jpg"
+    image: "/EB image/Sharuk.jpg"
   }
 ];
 
